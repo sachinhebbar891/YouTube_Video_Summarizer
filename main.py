@@ -1,5 +1,4 @@
-from video_transcript_reader import get_transcript, format_transcript
-from get_video import get_video_metadata_from_title
+from src import get_transcript, format_transcript, get_video_metadata_from_title
 
 if __name__ == "__main__":
     title = "Joe Rogan Experience Aravind Srinivas episode"
