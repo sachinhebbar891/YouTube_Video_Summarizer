@@ -4,7 +4,7 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(description="YouTube Video Summarizer")
     parser.add_argument("--title", type=str, required=True, help="Title of the YouTube video to summarize")
-    parser.add_argument("--summary_type", type=str, required=True, help="Type of summary required")
+    parser.add_argument("--summary_type", type=str, help="Type of summary the user wants")
     args = parser.parse_args()
 
     summary = run_pipeline(args.title, args.summary_type)

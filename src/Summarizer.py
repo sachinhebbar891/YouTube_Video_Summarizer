@@ -10,15 +10,6 @@ llm = ChatGoogleGenerativeAI(
     temperature = 0.5
 )
 
-def summarize(transcript: str, summary_type: str) -> str:
-    prompt = f"""
-    
-    Summarize the following video transcript.
-    Focus specifically on: {summary_type}
-
-    Transcript:
-    {transcript}
-    
-    """
-    response = llm.invoke(prompt)
+def summarize(prompt_messages: list) -> str:
+    response = llm.invoke(prompt_messages)
     return response.content

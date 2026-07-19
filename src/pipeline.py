@@ -1,4 +1,10 @@
-from src import get_transcript, format_transcript, get_video_metadata_from_title, check_title_similarity, summarize
+from src import (
+    get_transcript,
+    format_transcript, 
+    get_video_metadata_from_title,
+    check_title_similarity,
+    summarize, 
+    get_messages)
 
 def run_pipeline(title, summary_type):
     video_metadata_list = get_video_metadata_from_title(title)
@@ -20,7 +26,8 @@ def run_pipeline(title, summary_type):
     
     if transcript and choice.lower() in ['y', 'yes']:
         formatted_transcript = format_transcript(transcript)
-        summary = summarize(formatted_transcript, summary_type)
+        prompt_messages = get_messages(formatted_transcript, summary_type)
+        summary = summarize(prompt_messages)
         return summary[0]['text']
     elif choice.lower() in ['n', 'no']:
         return "User choice is not to proceed with this video."
