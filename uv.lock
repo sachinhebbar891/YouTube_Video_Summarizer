@@ -28,6 +28,15 @@ wheels = [
 ]
 
 [[package]]
+name = "appier"
+version = "1.46.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/82/13/957337ad9542ebfe5554aae6b71a5285e7b1d9ecb141ba92c02df8c04c48/appier-1.46.0.tar.gz", hash = "sha256:0edc15a7e9bb96837b426a1cd986f58db025d15563bdd560a2a86b83a77b02d4", size = 252596, upload-time = "2026-05-31T21:18:29.035Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/02/6a/1257f2e5f2408dc6b715fb259694cc937a09cbfb363237e730b53437f384/appier-1.46.0-py2.py3-none-any.whl", hash = "sha256:6886efc8b45fd9d629fdd53c1a27448602bff2e2ad2c5cceab50936313319184", size = 319459, upload-time = "2026-05-31T21:18:26.795Z" },
+]
+
+[[package]]
 name = "beautifulsoup4"
 version = "4.15.0"
 source = { registry = "https://pypi.org/simple" }
@@ -291,6 +300,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/11/d1/48fe5d7a43d278e9f6b5ada810b0a3530bbeac7ed7fcbcd366f932f05316/google_ai_generativelanguage-0.6.15.tar.gz", hash = "sha256:8f6d9dc4c12b065fe2d0289026171acea5183ebf2d0b11cefe12f3821e159ec3", size = 1375443, upload-time = "2025-01-13T21:50:47.459Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/7c/a3/67b8a6ff5001a1d8864922f2d6488dc2a14367ceb651bc3f09a947f2f306/google_ai_generativelanguage-0.6.15-py3-none-any.whl", hash = "sha256:5a03ef86377aa184ffef3662ca28f19eeee158733e45d7947982eb953c6ebb6c", size = 1327356, upload-time = "2025-01-13T21:50:44.174Z" },
+]
+
+[[package]]
+name = "google-api"
+version = "0.1.12"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "appier" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/85/2d/a6064ce3da7b8aede497559f445707a9cc53c8f7858d6237b6033db0782c/google_api-0.1.12.tar.gz", hash = "sha256:5611c87cdfc6b72927a5e2ea9299ddd6f3a206e29a342b86d3ff3ecc351c30a3", size = 3730, upload-time = "2017-09-05T11:22:17.834Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4d/99/d3237a3286f463158cad1deea9bda706cc401e67302e12c17507edba940e/google_api-0.1.12-py2.py3-none-any.whl", hash = "sha256:618f9f2076482a128c408867b5398b291938fe8e653ed7f8ed58fce5042f0c75", size = 7978, upload-time = "2017-09-05T11:22:17.02Z" },
 ]
 
 [[package]]
@@ -1454,6 +1475,9 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "google" },
+    { name = "google-api" },
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "google-api-core", version = "2.32.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
     { name = "google-api-python-client" },
     { name = "google-generativeai" },
     { name = "httplib2" },
@@ -1471,6 +1495,8 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "google", specifier = ">=3.0.0" },
+    { name = "google-api", specifier = ">=0.1.12" },
+    { name = "google-api-core", specifier = ">=2.25.2" },
     { name = "google-api-python-client", specifier = ">=2.198.0" },
     { name = "google-generativeai", specifier = ">=0.8.6" },
     { name = "httplib2", specifier = ">=0.32.0" },
