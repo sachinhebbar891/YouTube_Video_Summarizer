@@ -1,7 +1,8 @@
-from src import get_transcript, format_transcript, get_video_metadata_from_title, check_title_similarity
+from src import get_transcript, format_transcript, get_video_metadata_from_title, check_title_similarity, summarize
 
 if __name__ == "__main__":
     title = "Joe Rogan Experience Aravind Srinivas episode"
+    summary_type = "The summary should focus on the discussion of AI and what the future holds for us"
     video_metadata_list = get_video_metadata_from_title(title)
     similarities = []
     for video in video_metadata_list:
@@ -17,7 +18,7 @@ if __name__ == "__main__":
     
     if transcript:
         formatted_transcript = format_transcript(transcript)
-        print(formatted_transcript[:100])
+        summary = summarize(formatted_transcript, summary_type)
 
     else:
         print("No transcript available for this video.")
