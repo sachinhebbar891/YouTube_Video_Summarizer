@@ -8,15 +8,21 @@ def run_pipeline(title, summary_type):
         similarities.append(similarity)
 
     video_metadata = video_metadata_list[similarities.index(max(similarities))]
+
     print("Similarity score of the extracted video to user text:", max(similarities))
     print("Extracted Youtube Video title:", video_metadata["title"])
     print("Extracted Youtube Video Channel:", video_metadata["channel"])
     print("Extracted Youtube Video Published At:", video_metadata["published_at"])
+
+    choice = input("Do you want to proceed with this video? (yes/no): ")
+
     transcript = get_transcript(video_metadata["video_id"])
     
-    if transcript:
+    if transcript and choice.lower() in ['y', 'yes']:
         formatted_transcript = format_transcript(transcript)
         summary = summarize(formatted_transcript, summary_type)
         return summary[0]['text']
+    elif choice.lower() in ['n', 'no']:
+        return "User choice is not to proceed with this video."
     else:
-        return "No transcript available for this video."
+        return "transcript is not available for this video"
