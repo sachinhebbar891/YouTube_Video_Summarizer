@@ -5,14 +5,15 @@ from youtube_transcript_api._errors import (
     NoTranscriptFound,
     VideoUnavailable,
 )
-import requests
 
-TRANSCRIPT_RETRYABLE = (
-    requests.exceptions.Timeout,
-    requests.exceptions.ConnectionError,
+from src.config import (
+    MAX_RETRIES_TRANSCRIPT,
+    BASE_DELAY_TRANSCRIPT,
+    MAX_DELAY_TRANSCRIPT,
+    TRANSCRIPT_RETRYABLE
 )
 
-@retry_with_backoff(max_retries=3, base_delay=1.0, exceptions=TRANSCRIPT_RETRYABLE)
+@retry_with_backoff(max_retries=MAX_RETRIES_TRANSCRIPT, base_delay=BASE_DELAY_TRANSCRIPT, max_delay=MAX_DELAY_TRANSCRIPT, exceptions=TRANSCRIPT_RETRYABLE)
 def get_transcript(video_id):
     api = YouTubeTranscriptApi()
     try:
