@@ -5,7 +5,7 @@ from src.config import (
     DEFAULT_MODEL,
     GOOGLE_API_KEY,
     TEMPERATURE,
-    MAX_RETRIES,
+    LANGCHAIN_INTERNAL_MAX_RETRIES,
     MAX_RETRIES_LLM,
     BASE_DELAY_LLM,
     MAX_DELAY_LLM,
@@ -16,7 +16,7 @@ llm = ChatGoogleGenerativeAI(
     model=DEFAULT_MODEL,
     google_api_key=GOOGLE_API_KEY,
     temperature = TEMPERATURE,
-    max_retries = MAX_RETRIES
+    max_retries = LANGCHAIN_INTERNAL_MAX_RETRIES
 )
 
 

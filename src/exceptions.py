@@ -1,0 +1,2 @@
+class RetryableAPIError(Exception):
+    pass

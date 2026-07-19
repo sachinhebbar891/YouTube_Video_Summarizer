@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from src.exceptions import RetryableAPIError
 import requests
 load_dotenv()
 
@@ -24,15 +25,13 @@ MAX_RESULTS = 5
 # --- Model ---
 DEFAULT_MODEL = "models/gemini-3.1-flash-lite"
 TEMPERATURE = 0.5
-MAX_RETRIES = 0
+LANGCHAIN_INTERNAL_MAX_RETRIES = 0
 
 # --- Token limits ---
-INPUT_TOKEN_LIMIT = {
-    "models/gemini-3.1-flash-lite": 1048576,
-}
-
-OUTPUT_TOKEN_LIMIT = {
-    "models/gemini-3.1-flash-lite": 65536,
+TOKEN_LIMITS = {
+    "models/gemini-3.1-flash-lite": 
+        {"input token limit": 1048576, 
+         "output token limit": 65536},
 }
 
 # --- Pricing ---
@@ -61,9 +60,6 @@ MAX_RETRIES_YOUTUBE = 3
 BASE_DELAY_YOUTUBE = 1.0
 MAX_DELAY_YOUTUBE = 10.0
 RETRYABLE_CODES = (429, 500, 502, 503, 504)
-
-class RetryableAPIError(Exception):
-    pass
 
 YOUTUBE_RETRYABLE = (requests.exceptions.Timeout, requests.exceptions.ConnectionError, RetryableAPIError)
 

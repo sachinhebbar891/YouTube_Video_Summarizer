@@ -1,5 +1,6 @@
 import requests
 from src import retry_with_backoff
+from src.exceptions import RetryableAPIError
 from src.config import(
     YOUTUBE_API_KEY,
     GOOGLE_URL,
@@ -25,7 +26,7 @@ def get_video_metadata_from_title(title):
     response = requests.get(url, params=params, timeout=10)
 
     if response.status_code in RETRYABLE_CODES:
-        raise YOUTUBE_RETRYABLE[-1](f"Retryable status: {response.status_code}")
+        raise RetryableAPIError(f"Retryable status: {response.status_code}")
 
     response.raise_for_status()
 
